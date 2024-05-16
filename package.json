@@ -1,0 +1,24 @@
+{
+  "name": "@wgslx/wgslx-loader",
+  "version": "0.0.1",
+  "description": "Webpack loader for wgsl, wgslx, and wgsli files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wgslx/wgslx-loader.git"
+  },
+  "keywords": [
+    "wgsl",
+    "webgpu",
+    "wgslx"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wgslx/wgslx-loader/issues"
+  },
+  "homepage": "https://github.com/wgslx/wgslx-loader#readme"
+}
