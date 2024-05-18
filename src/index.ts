@@ -17,7 +17,7 @@ export default function wgslxLoader(this: webpack.LoaderContext<LoaderOptions>, 
 
     const match = Syntax.translationUnitExtended.match(cursor, context);
     return [
-        `const shader = {src:\`${match.token.toString(true)}\`};`,
+        `const shader = {code:\`${match.token.toString(true)}\`};`,
         'module.exports = shader;'
     ].join('\n');
 }
