@@ -2,7 +2,8 @@
   "name": "@wgslx/wgslx-loader",
   "version": "0.0.1",
   "description": "Webpack loader for wgsl, wgslx, and wgsli files.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "npx tsc --build",
     "generate": "npx ts-node scripts/generate.ts",
