@@ -12,12 +12,14 @@ interface LoaderOptions {
 export default function wgslxLoader(this: webpack.LoaderContext<LoaderOptions>, source: string) {
     this.getOptions();
 
-    const context = Context.from(source, this.resourcePath);
-    const cursor = Cursor(0);
+    const token = Syntax.translationUnitExtended.matchAll(source, this.resourcePath);
 
-    const match = Syntax.translationUnitExtended.match(cursor, context);
+    if (token === null) {
+        throw new Error('Failed to parse the shader source.');
+    }
+
     return [
-        `const shader = {code:\`${match.token.toString(true)}\`};`,
+        `const shader = {code:\`${token.toString(true)}\`};`,
         'module.exports = shader;'
     ].join('\n');
 }

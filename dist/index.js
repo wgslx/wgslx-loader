@@ -18,11 +18,12 @@ const wgslx_1 = require("@wgslx/wgslx");
 __exportStar(require("./shader"), exports);
 function wgslxLoader(source) {
     this.getOptions();
-    const context = wgslx_1.Context.from(source, this.resourcePath);
-    const cursor = (0, wgslx_1.Cursor)(0);
-    const match = wgslx_1.Syntax.translationUnitExtended.match(cursor, context);
+    const token = wgslx_1.Syntax.translationUnitExtended.matchAll(source, this.resourcePath);
+    if (token === null) {
+        throw new Error('Failed to parse the shader source.');
+    }
     return [
-        `const shader = {src:\`${match.token.toString(true)}\`};`,
+        `const shader = {code:\`${token.toString(true)}\`};`,
         'module.exports = shader;'
     ].join('\n');
 }

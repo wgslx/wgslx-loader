@@ -1,3 +1,5 @@
 export interface WgslxShader {
-    readonly src: string;
+    readonly code: string;
+    readonly label?: string;
+    readonly sourceMap?: string;
 }

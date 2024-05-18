@@ -38,7 +38,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(wgsl|wgslx|wgsli)$/,
+                test: /\.(wgsl[ix]?)$/,
                 use: 'wgslx-loader',
             },
         ],
