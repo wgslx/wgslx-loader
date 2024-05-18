@@ -5,3 +5,13 @@ declare module "\*.wgsl" {
     const shader: WgslxShader;
     export default shader;
 }
+
+declare module "\*.wgslx" {
+    const shader: WgslxShader;
+    export default shader;
+}
+
+declare module "\*.wgsli" {
+    const shader: WgslxShader;
+    export default shader;
+}
