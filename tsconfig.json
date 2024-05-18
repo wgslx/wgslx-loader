@@ -17,7 +17,9 @@
             "node"
         ],
         "strictNullChecks": true,
-        "alwaysStrict": true
+        "alwaysStrict": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true
     },
     "formatterOptions": {
         "baseIndentSize": 0,
