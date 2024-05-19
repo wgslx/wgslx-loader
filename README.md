@@ -52,11 +52,11 @@ module.exports = {
 
 ### Install types for \*.wgsl, \*.wgslx, and \*.wgslxi files
 
-```js
+```json
 // tsconfig.json
 {
-    "compilerOptions": {
-        "types": ["@wgslx/wgslx-loader"]
-    }
+  "compilerOptions": {
+    "types": ["@wgslx/wgslx-loader"]
+  }
 }
 ```
