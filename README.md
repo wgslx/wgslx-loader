@@ -14,14 +14,14 @@ const shaderModule = device.createShaderModule({ code });
 ```ts
 /** Shader module. */
 export interface WgslxShader {
-    /** Shader source. */
-    readonly code: string;
+	/** Shader source. */
+	readonly code: string;
 
-    /** Shader label derived from the file name. */
-    readonly label?: string;
+	/** Shader label derived from the file name. */
+	readonly label?: string;
 
-    /** Shader source map if configured to be generated. */
-    readonly sourceMap?: string;
+	/** Shader source map if configured to be generated. */
+	readonly sourceMap?: string;
 }
 ```
 
@@ -33,24 +33,27 @@ npm install --save-dev wgslx-loader
 
 ## Usage
 
-## Install webpack loader for \*.wgsl, \*.wgslx, and \*.wgslxi files
+Install webpack loader for \*.wgsl, \*.wgslx, and \*.wgsli files by adding the
+loader into your webpack config.
 
 ```js
+// webpack.config.js
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.(wgsl[ix]?)$/,
-                use: 'wgslx-loader',
-            },
-        ],
-    },
+	module: {
+		rules: [
+			{
+				test: /\.(wgsl[ix]?)$/,
+				use: 'wgslx-loader',
+			},
+		],
+	},
 };
 ```
 
 ### Install types for \*.wgsl, \*.wgslx, and \*.wgslxi files
 
-```json
+```js
+// tsconfig.json
 {
     "compilerOptions": {
         "types": ["@wgslx/wgslx-loader"]
