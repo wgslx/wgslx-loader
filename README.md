@@ -6,7 +6,7 @@ shaders with ease. Planned support for including other shader files.
 ```ts
 import { code } from './shader.wgsl';
 
-...
+//...
 
 const shaderModule = device.createShaderModule({ code });
 ```
@@ -33,6 +33,8 @@ npm install --save-dev wgslx-loader
 
 ## Usage
 
+## Install webpack loader for \*.wgsl, \*.wgslx, and \*.wgslxi files
+
 ```js
 module.exports = {
     module: {
@@ -44,4 +46,14 @@ module.exports = {
         ],
     },
 };
+```
+
+### Install types for \*.wgsl, \*.wgslx, and \*.wgslxi files
+
+```json
+{
+    "compilerOptions": {
+        "types": ["@wgslx/wgslx-loader"]
+    }
+}
 ```

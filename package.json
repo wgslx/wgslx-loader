@@ -3,11 +3,10 @@
   "version": "0.0.2",
   "description": "Webpack loader for wgsl, wgslx, and wgsli files.",
   "main": "dist/index.js",
-  "types": "index.d.ts",
+  "types": "types.d.ts",
   "scripts": {
     "build": "npx tsc --build",
     "generate": "npx ts-node scripts/generate.ts",
-    "publish": "npm publish --access public",
     "test": "npx jest"
   },
   "repository": {
