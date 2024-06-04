@@ -1,25 +1,31 @@
+import { resolve, dirname } from 'path';
 import * as webpack from 'webpack';
-import { Context, Cursor, Syntax } from '@wgslx/wgslx';
+import { ImportResolver, compileWgslx } from '@wgslx/wgslx';
 
 export * from './shader';
 
 interface LoaderOptions {
-    // Add loader options here.
-
+	// Add loader options here.
 }
 
 /** WGSLX-loader implementation. */
 export default function wgslxLoader(this: webpack.LoaderContext<LoaderOptions>, source: string) {
-    this.getOptions();
+	this.getOptions();
 
-    const token = Syntax.translationUnitExtended.matchAll(source, this.resourcePath);
+	const importResolver: ImportResolver = {
+		resolveFilePath: (baseFilePath: string, importPath: string) => {
+			return resolve(dirname(baseFilePath), importPath);
+		},
+		readSource: (filePath: string) => {
+			if (!this.fs.readFileSync) {
+				throw new Error('File system is not available.');
+			}
 
-    if (token === null) {
-        throw new Error('Failed to parse the shader source.');
-    }
+			this.addDependency(filePath);
+			return this.fs.readFileSync(filePath, 'utf8');
+		},
+	};
 
-    return [
-        `const shader = {code:\`${token.toString(true)}\`};`,
-        'module.exports = shader;'
-    ].join('\n');
+	const code = compileWgslx(source, this.resourcePath, { mode: 'wgslx', importResolver });
+	return [`const shader = {code:\`${code}\`};`, 'module.exports = shader;'].join('\n');
 }

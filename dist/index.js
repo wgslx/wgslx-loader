@@ -14,17 +14,24 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = require("path");
 const wgslx_1 = require("@wgslx/wgslx");
 __exportStar(require("./shader"), exports);
 function wgslxLoader(source) {
     this.getOptions();
-    const token = wgslx_1.Syntax.translationUnitExtended.matchAll(source, this.resourcePath);
-    if (token === null) {
-        throw new Error('Failed to parse the shader source.');
-    }
-    return [
-        `const shader = {code:\`${token.toString(true)}\`};`,
-        'module.exports = shader;'
-    ].join('\n');
+    const importResolver = {
+        resolveFilePath: (baseFilePath, importPath) => {
+            return (0, path_1.resolve)((0, path_1.dirname)(baseFilePath), importPath);
+        },
+        readSource: (filePath) => {
+            if (!this.fs.readFileSync) {
+                throw new Error('File system is not available.');
+            }
+            this.addDependency(filePath);
+            return this.fs.readFileSync(filePath, 'utf8');
+        },
+    };
+    const code = (0, wgslx_1.compileWgslx)(source, this.resourcePath, { mode: 'wgslx', importResolver });
+    return [`const shader = {code:\`${code}\`};`, 'module.exports = shader;'].join('\n');
 }
 exports.default = wgslxLoader;

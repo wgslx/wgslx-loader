@@ -1,12 +1,12 @@
 {
   "name": "@wgslx/wgslx-loader",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Webpack loader for wgsl, wgslx, and wgsli files.",
   "main": "dist/index.js",
   "types": "types.d.ts",
   "scripts": {
     "build": "npx tsc --build",
-    "generate": "npx ts-node scripts/generate.ts",
+    "prepare": "npm run test && npm run build",
     "test": "npx jest"
   },
   "repository": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/wgslx/wgslx-loader#readme",
   "dependencies": {
-    "@wgslx/wgslx": "^0.0.2"
+    "@wgslx/wgslx": "^0.0.7"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
